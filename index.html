@@ -21,8 +21,7 @@
           var payload = {title:null};
           payload.title = document.getElementById('title').value;      
 		  var url = 'https://www.goodreads.com/book/title.xml?title=' + payload.title + '&key='+ apiKey;
-          req.open('GET', url, true);
-		  req.setRequestHeader("Authorization", "Negotiate");		  
+          req.open('GET', url, true);		  
 		  req.addEventListener('load', function() {
 			  if (req.status >= 200 && req.status < 400) {
         	debugger;
