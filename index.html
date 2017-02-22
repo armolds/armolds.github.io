@@ -8,7 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+	<script>
+			var apiKey = 'vou035jDUUKlyiVeyGN1ow';
 
+      document.addEventListener('DOMContentLoaded', bindButtons);
+
+      function bindButtons(){
+        document.getElementById('Submit').addEventListener('click', function(event) {
+		if (document.getElementById('title').value)
+		{
+          var req = new XMLHttpRequest();
+          var payload = {title:null};
+          payload.title = document.getElementById('title').value;      
+		  var url = 'https://www.goodreads.com/book/title.xml?title=' + payload.title + '&key='+ apiKey;
+          req.open('GET', url, true);
+		  req.setRequestHeader("Authorization", "Negotiate");		  
+		  req.addEventListener('load', function() {
+			  if (req.status >= 200 && req.status < 400) {
+        	debugger;
+				  var response = JSON.parse(req.responseText);
+          console.log(JSON.parse(req.responseText));
+				            document.getElementById('name').textContent = response.name;
+							//document.getElementById('temp').textContent = response.main.temp;
+			  } else {
+				  console.log("Error: " + req.statusText);
+			  }
+			  
+			  
+		  });
+          req.send(null);
+          event.preventDefault();
+        }
+      });
+      }
+	</script>
     <title>How-To Guide</title>
 
     <!-- Bootstrap Core CSS -->
@@ -32,8 +65,8 @@
 
 <body>
 
-    <div class="brand">TEST TEST TEST</div>
-    <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+    <div class="brand">Goodreads API</div>
+    <div class="address-bar">A How-To Guide</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -56,7 +89,7 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="getStarted.html">Getting Started</a>
                     </li>
                     <li>
                         <a href="blog.html">Blog</a>
@@ -77,42 +110,59 @@
             <div class="box">
                 <div class="col-lg-12 text-center">
                     <div id="carousel-example-generic" class="carousel slide">
+					    <form id="weather">
+      <fieldset>
+        <legend>Goodreads Review by Book Title</legend>
+		<p> Book Title </p>
+        <label for="title"></label>
+        <input type="text" name="title" id="title">
+		<br>
+		<input type="submit" id="Submit">
+      </fieldset>
+    </form>
+    <div class="book">
+      <h2>Book Reviews!</h2>
+      <ul>
+        <li><span>Test: </span><span id="name"></span></li>
+
+      </ul>
+    </div>
                         <!-- Indicators -->
-                        <ol class="carousel-indicators hidden-xs">
+                        <!--<ol class="carousel-indicators hidden-xs">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
+                            <!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
+                            <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
+                        <!--</ol>-->
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
+                                <img class="img-responsive img-full" src="img/book-1.jpeg" alt="">
                             </div>
-                            <div class="item">
+                            <!--<div class="item">
                                 <img class="img-responsive img-full" src="img/slide-2.jpg" alt="">
                             </div>
                             <div class="item">
                                 <img class="img-responsive img-full" src="img/slide-3.jpg" alt="">
-                            </div>
+                            </div>-->
                         </div>
 
                         <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                             <span class="icon-prev"></span>
                         </a>
                         <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                             <span class="icon-next"></span>
-                        </a>
+                        </a>-->
                     </div>
                     <h2 class="brand-before">
                         <small>Welcome to</small>
                     </h2>
-                    <h1 class="brand-name">Business Casual</h1>
+                    <h1 class="brand-name">The Goodreads API How-To Guide</h1>
                     <hr class="tagline-divider">
                     <h2>
                         <small>By
-                            <strong>Start Bootstrap</strong>
+                            <strong>Shelby Armold</strong>
                         </small>
                     </h2>
                 </div>
@@ -123,16 +173,19 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Build a website
-                        <strong>worth visiting</strong>
+                    <h2 class="intro-text text-center">What is
+                        <strong>Goodreads</strong>
+						?
                     </h2>
                     <hr>
-                    <img class="img-responsive img-border img-left" src="img/intro-pic.jpg" alt="">
+					<a href="http://www.goodreads.com">
+                    <img class="img-responsive img-border img-left" src="img/goodreads_icon.png" alt="go to Goodreads!">
+					</a>
                     <hr class="visible-xs">
-                    <p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>
-                    <p>A huge thanks to <a href="http://join.deathtothestockphoto.com/" target="_blank">Death to the Stock Photo</a> for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                </div>
+					<p>Goodreads is many things - A community, a tracking system, a place to receive book recommendations, and much more.  I have been using Goodreads for seven years to track the books that I am reading, want to read, and have read in the past. </p>
+					<p>I have received great book recommendations, participated in give-aways, and started an e-book club.  Goodreads is the perfect site for any bookworm looking for a community of like-minded individuals, who also like to make lists and rate things. </p>
+					
+					</div>
             </div>
         </div>
 
@@ -140,13 +193,14 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Beautiful boxes
-                        <strong>to showcase your content</strong>
+                    <h2 class="intro-text text-center">So, What's an
+                        <strong>API</strong>
+						?
                     </h2>
                     <hr>
-                    <p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky's the limit!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                </div>
+					<p> An API (Application Program Interface) is a way to build software applications by using subroutines, protocols, and tools provided to communicate from one software to another. </p>
+					<p> In this guide, we will discuss getting started using the Goodreads API.  For consistency, I will use the example of a book blog as the use case for the API.  We will look at both JSON and Javascript. </p>
+				</div>
             </div>
         </div>
 
@@ -157,7 +211,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Shelby Armold 2017</p>
                 </div>
             </div>
         </div>
