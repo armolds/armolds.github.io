@@ -8,39 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<script>
-			var apiKey = 'vou035jDUUKlyiVeyGN1ow';
 
-      document.addEventListener('DOMContentLoaded', bindButtons);
-
-      function bindButtons(){
-        document.getElementById('Submit').addEventListener('click', function(event) {
-		if (document.getElementById('title').value)
-		{
-          var req = new XMLHttpRequest();
-          var payload = {title:null};
-          payload.title = document.getElementById('title').value;      
-		  var url = 'https://www.goodreads.com/book/title.xml?title=' + payload.title + '&key='+ apiKey;
-          req.open('GET', url, true);		  
-		  req.addEventListener('load', function() {
-			  if (req.status >= 200 && req.status < 400) {
-        	debugger;
-				  var response = JSON.parse(req.responseText);
-          console.log(JSON.parse(req.responseText));
-				            document.getElementById('name').textContent = response.name;
-							//document.getElementById('temp').textContent = response.main.temp;
-			  } else {
-				  console.log("Error: " + req.statusText);
-			  }
-			  
-			  
-		  });
-          req.send(null);
-          event.preventDefault();
-        }
-      });
-      }
-	</script>
     <title>How-To Guide</title>
 
     <!-- Bootstrap Core CSS -->
@@ -79,7 +47,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
+                <a class="navbar-brand" href="index.html">Goodreads API</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -91,7 +59,7 @@
                         <a href="getStarted.html">Getting Started</a>
                     </li>
                     <li>
-                        <a href="blog.html">Blog</a>
+                        <a href="JSON.html">JSON</a>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -110,22 +78,6 @@
                 <div class="col-lg-12 text-center">
                     <div id="carousel-example-generic" class="carousel slide">
 					    <form id="weather">
-      <fieldset>
-        <legend>Goodreads Review by Book Title</legend>
-		<p> Book Title </p>
-        <label for="title"></label>
-        <input type="text" name="title" id="title">
-		<br>
-		<input type="submit" id="Submit">
-      </fieldset>
-    </form>
-    <div class="book">
-      <h2>Book Reviews!</h2>
-      <ul>
-        <li><span>Test: </span><span id="name"></span></li>
-
-      </ul>
-    </div>
                         <!-- Indicators -->
                         <!--<ol class="carousel-indicators hidden-xs">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -198,7 +150,7 @@
                     </h2>
                     <hr>
 					<p> An API (Application Program Interface) is a way to build software applications by using subroutines, protocols, and tools provided to communicate from one software to another. </p>
-					<p> In this guide, we will discuss getting started using the Goodreads API.  For consistency, I will use the example of a book blog as the use case for the API.  We will look at both JSON and Javascript. </p>
+					<p> In this guide, we will discuss getting started using the Goodreads API.  We will look at both JSON, Javascript, and a tiny bit of JQuery because Goodreads doesn't support CORS (more on that in a bit). </p>
 				</div>
             </div>
         </div>
@@ -215,7 +167,7 @@
             </div>
         </div>
     </footer>
-
+	
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

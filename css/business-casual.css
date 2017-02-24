@@ -1,5 +1,5 @@
 /*!
- * Start Bootstrap - Business Casual (http://startbootstrap.com/)
+ * Start Bootstrap - Goodreads API (http://startbootstrap.com/)
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
@@ -82,6 +82,12 @@ hr {
     padding: 30px 15px;
     background: #fff;
     background: rgba(255,255,255,0.9);
+}
+
+.boxInBox {
+	margin-bottom: 20px;
+	padding: 30px 15px;
+	background: #fff;
 }
 
 .intro-text {
