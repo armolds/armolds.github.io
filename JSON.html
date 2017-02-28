@@ -78,54 +78,20 @@
                 <div class="col-lg-12">
                     <hr>
                     <h2 class="intro-text text-center">
-                        <strong>Getting Started</strong>
+                        <strong>JSON</strong>
                     </h2>
                     </hr>
+					<p>Let's talk about the JSON object that you receive back from your GET request.  Not all of the calls in the Goodreads API can return a JSON object, so sometimes this will need to be done in XML, but
+					for the sake of this guide, we are looking at JSON.</p>
+					<p>Earlier I explained how we can't use regular GET requests through Goodreads and need to use a proxy.  Because of this, accessing the information we need requires a longer string of calls.  Using 
+					Yahoo YQL, information is wrapped inside of query.results.GoodreadsResponse, so any time we need to pull information out of the object we receive, we will start with that.  </p>
+					<p> Let's look at another example of a method from the Goodreads API. </p>
+					
+					
+					<p> </p>
                 </div>
                 <div align="left">
-					<p>The very first thing you need to get started with the Goodreads API is to get a developer key.  You can register for one <a herf="https://www.goodreads.com/api/keys">here</a>. </p>
-					<p>Once you have a key, you're ready to get started.</p>
-					<p>Goodreads has a fairly good reference library regarding the calls you can make, complete with example URLs, but it does not go into depth on how we can use these things, which is what we'll be doing here. </p>
-					<p>First, you should know that Goodreads does not support CORS [Cross-Origin Resource Sharing] at this time (more about that <a href="https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin"> here</a>), because
-					of that, we will need to use a proxy to get the information that we need without Goodreads thinking we are attacking it and for that reason we need to use a little bit of JQuery.  For my examples, 
-					I'll be using Yahoo YQL as my proxy.  It is free, does not require a developer key, and allows you to return JSON objects (or XML, if you feel like it),
-					which is exactly what we need.  Results are wrapped inside of //query/results/GoodreadsResponse, so there is a little bit more typing when actually accessing the data, and it is a little bit slower since
-					, but overall is not a bad workaround until Goodreads decides to support CORS.  So here we go. </p>
-					<p>For the first example, we will look at how to retrieve reviews for a given book.  Please see the example code below.</p>
 					
-					<div class="boxInBox">
-					<p>  <img class="img-responsive img-full" src="img/reviews_widget_code.JPG" alt=""> <p>
-					</div>
-					
-					<br>
-					
-					<p> So let's talk about what we're doing here.  We start with an event listener to know when the user clicks the submit button.  After, we create a variable to hold our title.  We set the title to be the value
-					typed into the field in the form.  Next, we need our Goodreads URL.  This varies for each API call based on the information that you want to receive back.  You can see a list <a herf= "https://www.goodreads.com/api/"> here</a>.
-					This example is fairly simple - we just need our title and API key, which you got a little bit earlier. <p>
-					<p> Here is where it gets a bit complicated.  Goodreads not supporting CORS makes things difficult for us, so our GET request is a bit longer, but roughly the same as a regular call.  Instead of just passing in the url,
-					we pass in the Yahoo YQL url first and then set the query to the Goodreads url and bring it back in JSON format (which we will talk about a little bit later).  Once the call is complete, you can log to your console to see
-					exactly what you're getting in your JSON object, and then you can use it to display your results.  A bit earlier, I explained how our response code would be a bit longer due to the proxy call, and this is where that comes
-					in.  Here, I created a variable to hold the JSON object to make it a tiny bit shorter.  Next, we make sure that there was actually a response received, and if it was, we return the reviews widget provided by Goodreads!</p>
-					<p> Give it a try using the form below.  Just enter a book title and hit submit.  The Goodreads widget to display reviews will pop up! </p>
-					<br>
-					<br>
-					<div>
-						<form>
-							<fieldset>
-								<legend><strong>Goodreads Review by Book Title</strong></legend>
-									<p> Please Enter a Book Title </p>
-									<label for="title"></label>
-									<input type="text" name="title" id="title">
-									<br>
-									<input type="submit" id="Submit">
-							</fieldset>
-						</form>
-					<div class="book">
-						<span></span><span id="reviews"></span>
-					</div>
-					</div>
-					<br>
-					<p> On the next page, I'll explain a bit of what's going on with the JSON we receive...</p>
                 </div>
                 <div class="clearfix"></div>
             </div>

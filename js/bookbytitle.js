@@ -10,7 +10,7 @@
           payload.title = document.getElementById('title').value;      
 		  var url = 'https://www.goodreads.com/book/title.xml?title=' + payload.title + '&key='+ apiKey;
 
-		$.get("http://query.yahooapis.com/v1/public/yql",
+		$.get("https://query.yahooapis.com/v1/public/yql",
 			{
 				q: "select * from xml where url=\""+url+"\"",
 				format: "json"
