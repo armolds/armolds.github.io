@@ -4,12 +4,11 @@
 
       function bindButtons(){
         document.getElementById('Submit').addEventListener('click', function(event) {
-		if (document.getElementById('title').value)
+		if (document.getElementById('ISBN').value)
 		{
-          var payload = {title:null};
-          payload.title = document.getElementById('title').value;      
-		  var replaceSpaces = payload.title.replace(/ /g, '+');
-		  var url = 'https://www.goodreads.com/book/title.xml?title=' + replaceSpaces + '&key='+ apiKey;
+          var payload = {ISBN:null};
+          payload.ISBN = document.getElementById('ISBN').value;      
+		  var url = 'https://www.goodreads.com/api/author_url/' + payload.ISBN + '?key='+ apiKey;
 
 		$.get("https://query.yahooapis.com/v1/public/yql",
 			{
@@ -20,16 +19,15 @@
 				console.log(xml);
 				var response = xml;
 				if(response.query.results.GoodreadsResponse) {
-				document.getElementById('reviews').innerHTML = response.query.results.GoodreadsResponse.book.reviews_widget;
+				
+				document.getElementById('showBookInfo').textContent = response.query.results.GoodreadsResponse;
+				
 				}
-				else
-					document.getElementById('reviews').textContent = 'Error: Please enter a book title.';
-				}
+
+			}
 			);			  
 		  };
           event.preventDefault();
         });
       }
-	  
-	  
 	  

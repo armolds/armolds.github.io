@@ -83,49 +83,66 @@
                     </hr>
                 </div>
                 <div align="left">
-					<p>The very first thing you need to get started with the Goodreads API is to get a developer key.  You can register for one <a herf="https://www.goodreads.com/api/keys">here</a>. </p>
-					<p>Once you have a key, you're ready to get started.</p>
-					<p>Goodreads has a fairly good reference library regarding the calls you can make, complete with example URLs, but it does not go into depth on how we can use these things, which is what we'll be doing here. </p>
-					<p>First, you should know that Goodreads does not support CORS [Cross-Origin Resource Sharing] at this time (more about that <a href="https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin"> here</a>), because
-					of that, we will need to use a proxy to get the information that we need without Goodreads thinking we are attacking it and for that reason we need to use a little bit of JQuery.  For my examples, 
-					I'll be using Yahoo YQL as my proxy.  It is free, does not require a developer key, and allows you to return JSON objects (or XML, if you feel like it),
-					which is exactly what we need.  Results are wrapped inside of //query/results/GoodreadsResponse, so there is a little bit more typing when actually accessing the data, and it is a little bit slower since
-					, but overall is not a bad workaround until Goodreads decides to support CORS.  So here we go. </p>
-					<p>For the first example, we will look at how to retrieve reviews for a given book.  Please see the example code below.</p>
+					<p> Here we'll look at a few more examples of how to use the Goodreads API using Javascript. </p>
+					<p>One really neat feature of Goodreads is its Groups.  I have started by own book club this way, and it's a good way to find people who read similar books and who would like to start a discussion.
+					Here, we'll look at how to find a group using general search criteria. </p>
+						<div class="boxInBox">
+							<p> <img class="img-responsive img-full" src="img/getGroupInfo.jpg" alt=""> </p>
+						</div>
 					
-					<div class="boxInBox">
-					<p>  <img class="img-responsive img-full" src="img/reviews_widget_code.JPG" alt=""> <p>
-					</div>
 					
-					<br>
-					
-					<p> So let's talk about what we're doing here.  We start with an event listener to know when the user clicks the submit button.  After, we create a variable to hold our title.  We set the title to be the value
-					typed into the field in the form.  Next, we need our Goodreads URL.  This varies for each API call based on the information that you want to receive back.  You can see a list <a herf= "https://www.goodreads.com/api/"> here</a>.
-					This example is fairly simple - we just need our title and API key, which you got a little bit earlier. <p>
-					<p> Here is where it gets a bit complicated.  Goodreads not supporting CORS makes things difficult for us, so our GET request is a bit longer, but roughly the same as a regular call.  Instead of just passing in the url,
-					we pass in the Yahoo YQL url first and then set the query to the Goodreads url and bring it back in JSON format (which we will talk about a little bit later).  Once the call is complete, you can log to your console to see
-					exactly what you're getting in your JSON object, and then you can use it to display your results.  A bit earlier, I explained how our response code would be a bit longer due to the proxy call, and this is where that comes
-					in.  Here, I created a variable to hold the JSON object to make it a tiny bit shorter.  Next, we make sure that there was actually a response received, and if it was, we return the reviews widget provided by Goodreads!</p>
-					<p> Give it a try using the form below.  Just enter a book title and hit submit.  The Goodreads widget to display reviews will display! </p>
-					<br>
-					<br>
+					<p>Try it out below.  Use a search term like "adventure" or "thrillers". </p>
 					<div>
 						<form>
 							<fieldset>
-								<legend><strong>Goodreads Review by Book Title</strong></legend>
-									<p> Please Enter a Book Title </p>
-									<label for="title"></label>
-									<input type="text" name="title" id="title">
+								<legend><strong>Find a Group!</strong></legend>
+									<p> Please Enter a Search Term</p>
+									<label for="search"></label>
+									<input type="text" name="search" id="search">
+									<br>
 									<br>
 									<input type="submit" id="Submit">
 							</fieldset>
 						</form>
 					<div class="book">
-						<span></span><span id="reviews"></span>
-					</div>
-					</div>
 					<br>
-					<p> On the next page, I'll explain a bit of what's going on with the JSON we receive...</p>
+					<p> Groups: </p>
+						<span></span><span id="showGroups"></span>
+					</div>
+					</div>
+					
+					
+					<!--<p>For this example, we'll get information about a particular book by using just it's ISBN.</p>
+					
+					
+					<p>You can give it a try below: (if you don't have one, the ISBN for 1984 is 9780141182957)</p>
+					<div>
+						<form>
+							<fieldset>
+								<legend><strong>Goodreads Books by ISBN</strong></legend>
+									<p> Please Enter an ISBN</p>
+									<label for="ISBN"></label>
+									<input type="text" name="ISBN" id="ISBN">
+									<br>
+									<br>
+									<input type="submit" id="Submit">
+							</fieldset>
+						</form>
+					<div class="book">
+					<br>
+					<p> Your Book: </p>
+						<span></span><span id="showBookInfo"></span>
+					</div>
+					</div>-->
+					
+					
+					
+					
+					
+					<p> The final important piece of information you'll need to know about the Goodreads API is that several methods require the use of OAuth and registration of your app with Goodreads. For the 
+					scope of this How-To, I have not gone into OAuth and have not registered my app because, well, I'm not writing one.  However, if you are planning to write an app that will require someone
+					to login to Goodreads, you can find some intro information <a href="https://www.goodreads.com/api/documentation#oauth">here.</a>
+					<br>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -184,7 +201,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<!--Code for buttons-->
-	<script src="js/bookbytitle.js"></script>
+	<script src="js/groupsearch.js"></script>
 
 </body>
 
